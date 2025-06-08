@@ -7,40 +7,83 @@
   <meta name="Generator" content="Cocoa HTML Writer">
   <meta name="CocoaVersion" content="2575.5">
   <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
   </style>
 </head>
 <body>
-<p class="p1">&lt;form id="sliceForm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;input name="name" placeholder="Your Name or Discord Tag" required /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;input name="verse" placeholder="Bible Verse (e.g. Psalm 23:1)" required /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;textarea name="reflection" placeholder="Your Personal Reflection" required&gt;&lt;/textarea&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;textarea name="prayer" placeholder="Optional Prayer"&gt;&lt;/textarea&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;button type="submit"&gt;Submit&lt;/button&gt;</p>
-<p class="p1">&lt;/form&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('sliceForm').addEventListener('submit', async e =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>e.preventDefault();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const data = Object.fromEntries(new FormData(e.target));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const payload = {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>content: `</p>
-<p class="p1">🍞 Daily Slice by ${data.name}</p>
-<p class="p2"><br></p>
-<p class="p1">📖 "${data.verse}" — ${data.verse}</p>
-<p class="p1">💬 ${data.reflection}</p>
-<p class="p1">🙏 ${data.prayer}</p>
-<p class="p1">🕊️ May this slice nourish you too.`</p>
-<p class="p1"><span class="Apple-converted-space">    </span>};</p>
-<p class="p1"><span class="Apple-converted-space">    </span>await fetch('https://discord.com/api/webhooks/1379584389511647272/IsskAhyUK2rfkZP4RpF_YRw91Bobbvyy9HcmG02-hlm7T6rNqkMSajd3vNUIq4GAsBNL', {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">      </span>headers: {'Content-Type': 'application/json'},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>body: JSON.stringify(payload)</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>alert('Your Daily Slice has been posted!');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>e.target.reset();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p1">&lt;/script&gt;</p>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;Daily Slice Submission&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width: 600px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 2rem auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-color: #f9f9f9;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>input, textarea, button {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 0.75rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 0.5rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid #ccc;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 5px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>button {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-color: #4caf50;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: white;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 1rem;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>button:hover {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background-color: #45a049;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;h1&gt;🍞 Submit Your Daily Slice&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;form id="sliceForm"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;input name="name" placeholder="Your Name or Discord Tag" required /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;input name="verse" placeholder="Bible Verse (e.g. Psalm 23:1)" required /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;textarea name="reflection" placeholder="Your Personal Reflection" required&gt;&lt;/textarea&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;textarea name="prayer" placeholder="Optional Prayer"&gt;&lt;/textarea&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button type="submit"&gt;Submit&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/form&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('sliceForm').addEventListener('submit', async e =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>e.preventDefault();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const data = Object.fromEntries(new FormData(e.target));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const payload = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>content: `</span></p>
+<p class="p1"><span class="s1">🍞 Daily Slice by ${data.name}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">📖 "${data.verse}" — ${data.verse}</span></p>
+<p class="p1"><span class="s1">💬 ${data.reflection}</span></p>
+<p class="p1"><span class="s1">🙏 ${data.prayer}</span></p>
+<p class="p1"><span class="s1">🕊️ May this slice nourish you too.`</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>await fetch('https://discord.com/api/webhooks/1379584389511647272/IsskAhyUK2rfkZP4RpF_YRw91Bobbvyy9HcmG02-hlm7T6rNqkMSajd3vNUIq4GAsBNL', {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>method: 'POST',</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>headers: {'Content-Type': 'application/json'},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body: JSON.stringify(payload)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>alert('Your Daily Slice has been posted!');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>e.target.reset();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
 </body>
 </html>
