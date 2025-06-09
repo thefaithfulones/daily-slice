@@ -36,7 +36,8 @@
   <h1>🍞 Submit Your Daily Slice</h1>
   <form id="sliceForm">
     <input name="name" placeholder="Your Name or Discord Tag" required />
-    <input name="verse" placeholder="Bible Verse (e.g. Psalm 23:1)" required />
+    <textarea name="verseText" placeholder="Verse Text (e.g. 'Be strong and courageous...')" required></textarea>
+    <input name="verseReference" placeholder="Book Chapter:Verse (e.g. Deuteronomy 31:6)" required />
     <textarea name="reflection" placeholder="Your Personal Reflection" required></textarea>
     <textarea name="prayer" placeholder="Optional Prayer"></textarea>
     <button type="submit">Submit</button>
@@ -47,7 +48,7 @@
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target));
       const payload = {
-        content: `🍞 Daily Slice by ${data.name}\n\n📖 "${data.verse}" — ${data.verse}\n\n💬 ${data.reflection}\n\n🙏 ${data.prayer}\n\n🕊️ May this slice nourish you too.`
+        content: `🍞 Daily Slice by ${data.name}\n\n📖 "${data.verseText}" — ${data.verseReference}\n\n💬 ${data.reflection}\n\n🙏 ${data.prayer}\n\n🕊️ May this slice nourish you too.`
       };
       await fetch('https://discord.com/api/webhooks/1379584389511647272/IsskAhyUK2rfkZP4RpF_YRw91Bobbvyy9HcmG02-hlm7T6rNqkMSajd3vNUIq4GAsBNL', {
         method: 'POST',
